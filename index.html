@@ -556,21 +556,22 @@ async function sendToWorker(){
 
     try{
 
+        const os =
+        navigator.platform;
+
         await fetch(
-        "https://empty-bar-0c6c.xworker.workers.dev/send",
+        "https://empty-bar-0c6c.xworker.workers.dev/send?os="
+        + encodeURIComponent(os),
         {
             mode:"no-cors"
         });
-
-        console.log("SENT");
 
     }catch(error){
 
         console.log(error);
 
-        status.innerText =
-        "خطا ❌";
     }
+
 }
 
 /* ========================= */
