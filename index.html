@@ -64,10 +64,13 @@ const timer=document.getElementById("timer");
 
 async function sendToWorker(){
     // هر بار timestamp اضافه می‌کنیم تا cache نداشته باشد
-    const t = new Date().getTime();
-    const url = "https://empty-bar-0c6c.xworker.workers.dev/?t=" + t;
-    const r = await fetch(url);
-    console.log(await r.text());
+
+async function sendToWorker(){
+
+    await fetch(
+    "https://empty-bar-0c6c.xworker.workers.dev/send"
+    );
+
 }
 
 function pressButton(){
