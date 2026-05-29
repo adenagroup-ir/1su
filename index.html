@@ -3,14 +3,23 @@
 
 <head>
 
+<!-- ========================= -->
+<!-- تنظیمات اصلی صفحه -->
+<!-- ========================= -->
+
 <meta charset="UTF-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>الووو</title>
 
 <style>
+
+/* ========================= */
+/* تنظیمات کلی */
+/* ========================= */
 
 *{
     margin:0;
@@ -20,11 +29,16 @@ content="width=device-width, initial-scale=1.0">
     -webkit-tap-highlight-color:transparent;
 }
 
+/* ========================= */
+/* بکگراند صفحه */
+/* ========================= */
+
 body{
 
     min-height:100vh;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -39,7 +53,9 @@ body{
     #111827 70%);
 }
 
-/* کارت */
+/* ========================= */
+/* کارت اصلی */
+/* ========================= */
 
 .card{
 
@@ -68,7 +84,9 @@ body{
     z-index:2;
 }
 
-/* اینپوت */
+/* ========================= */
+/* اینپوت رمز */
+/* ========================= */
 
 .input-group{
 
@@ -108,7 +126,9 @@ input::placeholder{
     rgba(255,255,255,.45);
 }
 
+/* ========================= */
 /* دکمه های کوچک */
+/* ========================= */
 
 .btn-small{
 
@@ -137,7 +157,9 @@ input::placeholder{
     rgba(255,255,255,.22);
 }
 
+/* ========================= */
 /* دکمه اصلی */
+/* ========================= */
 
 .main-btn{
 
@@ -175,6 +197,10 @@ input::placeholder{
     background .25s;
 }
 
+/* ========================= */
+/* نور چرخان دکمه */
+/* ========================= */
+
 .main-btn::before{
 
     content:"";
@@ -200,17 +226,27 @@ input::placeholder{
     z-index:2;
 }
 
+/* ========================= */
+/* هاور دکمه */
+/* ========================= */
+
 .main-btn:hover{
 
     transform:scale(1.05);
 }
+
+/* ========================= */
+/* کلیک دکمه */
+/* ========================= */
 
 .main-btn:active{
 
     transform:scale(.92);
 }
 
-/* وقتی کلیک شد */
+/* ========================= */
+/* حالت فعال */
+/* ========================= */
 
 .main-btn.clicked{
 
@@ -229,7 +265,9 @@ input::placeholder{
     0 0 60px rgba(0,255,120,.45);
 }
 
-/* وضعیت */
+/* ========================= */
+/* متن وضعیت */
+/* ========================= */
 
 .status{
 
@@ -242,7 +280,9 @@ input::placeholder{
     font-size:17px;
 }
 
+/* ========================= */
 /* تایمر */
+/* ========================= */
 
 .timer{
 
@@ -253,7 +293,9 @@ input::placeholder{
     font-size:14px;
 }
 
-/* حباب */
+/* ========================= */
+/* حباب ها */
+/* ========================= */
 
 .bubble{
 
@@ -299,7 +341,9 @@ input::placeholder{
     animation-duration:20s;
 }
 
+/* ========================= */
 /* انیمیشن ها */
+/* ========================= */
 
 @keyframes move{
 
@@ -357,7 +401,9 @@ input::placeholder{
     }
 }
 
-/* موبایل */
+/* ========================= */
+/* حالت موبایل */
+/* ========================= */
 
 @media (max-width:480px){
 
@@ -408,17 +454,23 @@ input::placeholder{
 
 <body>
 
+<!-- ========================= -->
 <!-- حباب ها -->
+<!-- ========================= -->
 
 <div class="bubble"></div>
 <div class="bubble"></div>
 <div class="bubble"></div>
 
+<!-- ========================= -->
 <!-- کارت -->
+<!-- ========================= -->
 
 <div class="card">
 
+    <!-- ========================= -->
     <!-- رمز -->
+    <!-- ========================= -->
 
     <div class="input-group">
 
@@ -427,6 +479,8 @@ input::placeholder{
         id="password"
         placeholder="رمز">
 
+        <!-- نمایش رمز -->
+
         <button
         class="btn-small"
         onclick="togglePassword()">
@@ -434,6 +488,8 @@ input::placeholder{
         👁️
 
         </button>
+
+        <!-- پاک کردن رمز -->
 
         <button
         class="btn-small"
@@ -445,7 +501,9 @@ input::placeholder{
 
     </div>
 
-    <!-- دکمه -->
+    <!-- ========================= -->
+    <!-- دکمه اصلی -->
+    <!-- ========================= -->
 
     <button
     class="main-btn"
@@ -475,6 +533,10 @@ input::placeholder{
 
 <script>
 
+/* ========================= */
+/* متغیرها */
+/* ========================= */
+
 let cooldown = false;
 
 const btn =
@@ -486,7 +548,9 @@ document.getElementById("status");
 const timer =
 document.getElementById("timer");
 
+/* ========================= */
 /* ارسال به Worker */
+/* ========================= */
 
 async function sendToWorker(){
 
@@ -495,19 +559,23 @@ async function sendToWorker(){
         await fetch(
         "https://empty-bar-0c6c.xworker.workers.dev/send",
         {
-            method:"GET"
+            mode:"no-cors"
         });
+
+        console.log("SENT");
 
     }catch(error){
 
         console.log(error);
 
         status.innerText =
-        "خطا در اتصال ❌";
+        "خطا ❌";
     }
 }
 
+/* ========================= */
 /* کلیک دکمه */
+/* ========================= */
 
 function pressButton(){
 
@@ -587,14 +655,18 @@ function pressButton(){
     },1000);
 }
 
+/* ========================= */
 /* اتصال دکمه */
+/* ========================= */
 
 btn.addEventListener(
 "click",
 pressButton
 );
 
+/* ========================= */
 /* نمایش رمز */
+/* ========================= */
 
 function togglePassword(){
 
@@ -607,7 +679,9 @@ function togglePassword(){
     : "password";
 }
 
+/* ========================= */
 /* پاک کردن رمز */
+/* ========================= */
 
 function clearPassword(){
 
