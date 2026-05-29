@@ -1,3 +1,4 @@
+```html id="z5h4om"
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -72,11 +73,6 @@ input::placeholder{
     font-size:18px;
     color:white;
     background:rgba(255,255,255,0.12);
-    transition:0.2s;
-}
-
-.btn-small:hover{
-    background:rgba(255,255,255,0.22);
 }
 
 .main-btn{
@@ -104,37 +100,10 @@ input::placeholder{
     background .25s;
 }
 
-.main-btn::before{
-    content:"";
-    position:absolute;
-    inset:-25%;
-    background:
-    radial-gradient(circle,
-    rgba(255,255,255,0.35),
-    transparent 60%);
-    animation:rotateGlow 5s linear infinite;
-}
-
-.main-btn span{
-    position:relative;
-    z-index:2;
-}
-
-.main-btn:hover{
-    transform:scale(1.05);
-}
-
-.main-btn:active{
-    transform:scale(0.90);
-}
-
 .main-btn.clicked{
+
     background:
     linear-gradient(145deg,#00c853,#00e676);
-
-    animation:
-    pulse .7s infinite alternate,
-    shake .25s linear 2;
 
     box-shadow:
     0 0 20px rgba(0,255,120,0.7),
@@ -154,114 +123,10 @@ input::placeholder{
     font-size:14px;
 }
 
-.bubble{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.05);
-    animation:move 18s linear infinite;
-}
-
-.bubble:nth-child(1){
-    width:120px;
-    height:120px;
-    left:5%;
-    top:95%;
-}
-
-.bubble:nth-child(2){
-    width:70px;
-    height:70px;
-    right:10%;
-    top:85%;
-    animation-duration:14s;
-}
-
-.bubble:nth-child(3){
-    width:90px;
-    height:90px;
-    right:30%;
-    top:100%;
-    animation-duration:20s;
-}
-
-@keyframes move{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(-130vh);
-    }
-}
-
-@keyframes rotateGlow{
-    from{
-        transform:rotate(0deg);
-    }
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes pulse{
-    from{
-        transform:scale(1);
-    }
-    to{
-        transform:scale(1.05);
-    }
-}
-
-@keyframes shake{
-    0%{ transform:translateX(0); }
-    25%{ transform:translateX(-4px); }
-    50%{ transform:translateX(4px); }
-    75%{ transform:translateX(-4px); }
-    100%{ transform:translateX(0); }
-}
-
-/* موبایل */
-
-@media (max-width:480px){
-
-    .card{
-        padding:24px 16px;
-        border-radius:24px;
-    }
-
-    .main-btn{
-        width:135px;
-        height:135px;
-        font-size:24px;
-    }
-
-    input{
-        height:48px;
-        font-size:18px;
-    }
-
-    .btn-small{
-        width:48px;
-        height:48px;
-        font-size:16px;
-    }
-
-    .status{
-        font-size:15px;
-    }
-
-    .timer{
-        font-size:12px;
-    }
-}
-
 </style>
 </head>
 
 <body>
-
-<div class="bubble"></div>
-<div class="bubble"></div>
-<div class="bubble"></div>
 
 <div class="card">
 
@@ -294,10 +159,11 @@ input::placeholder{
         id="mainBtn"
         onclick="pressButton()"
     >
-        <span>الووو</span>
+        الووو
     </button>
 
     <div class="status" id="status"></div>
+
     <div class="timer" id="timer"></div>
 
 </div>
@@ -305,6 +171,35 @@ input::placeholder{
 <script>
 
 let cooldown = false;
+
+// -------------------
+// GITHUB
+// -------------------
+
+const token = "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";
+const owner = "adenagroup-ir";
+const repo = "alooo";
+
+// -------------------
+
+async function sendToGitHub(){
+
+    await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/dispatches`,
+    {
+        method:"POST",
+
+        headers:{
+            "Accept":"application/vnd.github+json",
+            "Authorization":"Bearer " + token
+        },
+
+        body:JSON.stringify({
+            event_type:"play_alarm"
+        })
+    });
+
+}
 
 function pressButton(){
 
@@ -337,7 +232,10 @@ function pressButton(){
 
     status.innerText = "ارسال شد 😎";
 
+    sendToGitHub();
+
     if(navigator.vibrate){
+
         navigator.vibrate([120,60,120]);
     }
 
@@ -390,3 +288,4 @@ function clearPassword(){
 
 </body>
 </html>
+```
