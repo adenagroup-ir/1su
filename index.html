@@ -21,15 +21,24 @@ font-family:tahoma;
 }
 
 body{
+
 min-height:100vh;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
+
 overflow:hidden;
+
 padding:20px;
 
 background:
-radial-gradient(circle at top,#2563eb,#111827 70%);
+radial-gradient(
+circle at top,
+#2563eb,
+#111827 70%
+);
 }
 
 .card{
@@ -112,6 +121,14 @@ color:white;
 
 background:
 rgba(255,255,255,.12);
+
+transition:.2s;
+}
+
+.btn-small:hover{
+
+background:
+rgba(255,255,255,.22);
 }
 
 .main-btn{
@@ -162,7 +179,8 @@ background:
 radial-gradient(
 circle,
 rgba(255,255,255,.35),
-transparent 60%);
+transparent 60%
+);
 
 animation:
 rotateGlow 5s linear infinite;
@@ -437,7 +455,7 @@ document.getElementById("status");
 const timer =
 document.getElementById("timer");
 
-// ارسال به Worker
+// ارسال سیگنال
 
 async function sendToWorker(){
 
@@ -447,9 +465,12 @@ async function sendToWorker(){
         "https://empty-bar-0c6c.xworker.workers.dev/send"
         );
 
-    }catch(e){
+    }catch(error){
 
-        console.log(e);
+        console.log(error);
+
+        status.innerText =
+        "خطا در اتصال ❌";
     }
 
 }
@@ -461,6 +482,8 @@ function pressButton(){
     const password =
     document.getElementById("password").value;
 
+    // چک رمز
+
     if(password !== "1234"){
 
         status.innerText =
@@ -469,18 +492,22 @@ function pressButton(){
         return;
     }
 
+    // کولداون
+
     if(cooldown){
         return;
     }
 
     cooldown = true;
 
+    // افکت دکمه
+
     btn.classList.add("clicked");
 
     status.innerText =
     "ارسال شد 😎";
 
-    // Worker
+    // ارسال
 
     sendToWorker();
 
