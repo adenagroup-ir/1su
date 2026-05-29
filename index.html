@@ -1,1 +1,392 @@
-<hr><hr><hr><hr><hr>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>الووو</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:tahoma;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+    radial-gradient(circle at top,#2563eb,#111827 70%);
+    overflow:hidden;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:400px;
+    padding:28px 20px;
+    border-radius:28px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.12);
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    position:relative;
+    z-index:2;
+}
+
+.input-group{
+    display:flex;
+    gap:8px;
+    margin-bottom:24px;
+}
+
+input{
+    flex:1;
+    height:52px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    padding:0 15px;
+    text-align:center;
+    font-size:20px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+}
+
+input::placeholder{
+    color:rgba(255,255,255,0.45);
+}
+
+.btn-small{
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:16px;
+    cursor:pointer;
+    font-size:18px;
+    color:white;
+    background:rgba(255,255,255,0.12);
+    transition:0.2s;
+}
+
+.btn-small:hover{
+    background:rgba(255,255,255,0.22);
+}
+
+.main-btn{
+    width:170px;
+    height:170px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:30px;
+    font-weight:bold;
+    color:white;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(145deg,#ff006e,#ff4d6d);
+
+    box-shadow:
+    0 10px 35px rgba(255,0,110,0.45),
+    inset 0 5px 10px rgba(255,255,255,0.25);
+
+    transition:
+    transform .15s,
+    box-shadow .25s,
+    background .25s;
+}
+
+.main-btn::before{
+    content:"";
+    position:absolute;
+    inset:-25%;
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,0.35),
+    transparent 60%);
+    animation:rotateGlow 5s linear infinite;
+}
+
+.main-btn span{
+    position:relative;
+    z-index:2;
+}
+
+.main-btn:hover{
+    transform:scale(1.05);
+}
+
+.main-btn:active{
+    transform:scale(0.90);
+}
+
+.main-btn.clicked{
+    background:
+    linear-gradient(145deg,#00c853,#00e676);
+
+    animation:
+    pulse .7s infinite alternate,
+    shake .25s linear 2;
+
+    box-shadow:
+    0 0 20px rgba(0,255,120,0.7),
+    0 0 60px rgba(0,255,120,0.45);
+}
+
+.status{
+    margin-top:18px;
+    min-height:28px;
+    color:white;
+    font-size:17px;
+}
+
+.timer{
+    margin-top:8px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.bubble{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.05);
+    animation:move 18s linear infinite;
+}
+
+.bubble:nth-child(1){
+    width:120px;
+    height:120px;
+    left:5%;
+    top:95%;
+}
+
+.bubble:nth-child(2){
+    width:70px;
+    height:70px;
+    right:10%;
+    top:85%;
+    animation-duration:14s;
+}
+
+.bubble:nth-child(3){
+    width:90px;
+    height:90px;
+    right:30%;
+    top:100%;
+    animation-duration:20s;
+}
+
+@keyframes move{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-130vh);
+    }
+}
+
+@keyframes rotateGlow{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes pulse{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.05);
+    }
+}
+
+@keyframes shake{
+    0%{ transform:translateX(0); }
+    25%{ transform:translateX(-4px); }
+    50%{ transform:translateX(4px); }
+    75%{ transform:translateX(-4px); }
+    100%{ transform:translateX(0); }
+}
+
+/* موبایل */
+
+@media (max-width:480px){
+
+    .card{
+        padding:24px 16px;
+        border-radius:24px;
+    }
+
+    .main-btn{
+        width:135px;
+        height:135px;
+        font-size:24px;
+    }
+
+    input{
+        height:48px;
+        font-size:18px;
+    }
+
+    .btn-small{
+        width:48px;
+        height:48px;
+        font-size:16px;
+    }
+
+    .status{
+        font-size:15px;
+    }
+
+    .timer{
+        font-size:12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+
+<div class="card">
+
+    <div class="input-group">
+
+        <input
+            type="password"
+            id="password"
+            placeholder="رمز"
+        >
+
+        <button
+            class="btn-small"
+            onclick="togglePassword()"
+        >
+            👁️
+        </button>
+
+        <button
+            class="btn-small"
+            onclick="clearPassword()"
+        >
+            🗑️
+        </button>
+
+    </div>
+
+    <button
+        class="main-btn"
+        id="mainBtn"
+        onclick="pressButton()"
+    >
+        <span>الووو</span>
+    </button>
+
+    <div class="status" id="status"></div>
+    <div class="timer" id="timer"></div>
+
+</div>
+
+<script>
+
+let cooldown = false;
+
+function pressButton(){
+
+    const password =
+    document.getElementById("password").value;
+
+    const btn =
+    document.getElementById("mainBtn");
+
+    const status =
+    document.getElementById("status");
+
+    const timer =
+    document.getElementById("timer");
+
+    if(password !== "1234"){
+
+        status.innerText = "رمز اشتباهه ❌";
+
+        return;
+    }
+
+    if(cooldown){
+        return;
+    }
+
+    cooldown = true;
+
+    btn.classList.add("clicked");
+
+    status.innerText = "ارسال شد 😎";
+
+    if(navigator.vibrate){
+        navigator.vibrate([120,60,120]);
+    }
+
+    let timeLeft = 10;
+
+    timer.innerText =
+    `تا استفاده بعدی: ${timeLeft} ثانیه`;
+
+    const countdown = setInterval(()=>{
+
+        timeLeft--;
+
+        timer.innerText =
+        `تا استفاده بعدی: ${timeLeft} ثانیه`;
+
+        if(timeLeft <= 0){
+
+            clearInterval(countdown);
+
+            cooldown = false;
+
+            btn.classList.remove("clicked");
+
+            status.innerText = "";
+
+            timer.innerText = "";
+        }
+
+    },1000);
+
+}
+
+function togglePassword(){
+
+    const pwd =
+    document.getElementById("password");
+
+    pwd.type =
+    pwd.type === "password"
+    ? "text"
+    : "password";
+}
+
+function clearPassword(){
+
+    document.getElementById("password").value = "";
+}
+
+</script>
+
+</body>
+</html>
