@@ -552,25 +552,14 @@ document.getElementById("timer");
 /* ارسال به Worker */
 /* ========================= */
 
+
 async function sendToWorker(){
 
-    try{
-
-        const os =
-        navigator.platform;
-
-        await fetch(
-        "https://empty-bar-0c6c.xworker.workers.dev/send?os="
-        + encodeURIComponent(os),
-        {
-            mode:"no-cors"
-        });
-
-    }catch(error){
-
-        console.log(error);
-
-    }
+    await fetch(
+    "https://empty-bar-0c6c.xworker.workers.dev/send",
+    {
+        mode:"no-cors"
+    });
 
 }
 
